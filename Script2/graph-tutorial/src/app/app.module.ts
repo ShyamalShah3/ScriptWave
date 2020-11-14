@@ -16,6 +16,9 @@ import { HomeComponent } from './home/home.component';
 import { AlertsComponent } from './alerts/alerts.component';
 import { OAuthSettings } from '../oauth';
 import { CalendarComponent } from './calendar/calendar.component';
+import { WeeklyComponent } from './weekly/weekly.component';
+import { ToDoComponent } from './to-do/to-do.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { CalendarComponent } from './calendar/calendar.component';
     NavBarComponent,
     HomeComponent,
     AlertsComponent,
-    CalendarComponent
+    CalendarComponent,
+    WeeklyComponent,
+    ToDoComponent,
+    AboutusComponent
   ],
   // <imports>
   imports: [
