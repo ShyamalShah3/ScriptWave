@@ -93,7 +93,7 @@ def calendar(request):
 
     events = get_calendar_events(token)
 
-    cal_obj = cal.Calendar()
+    cal_obj = cal.Calendar(firstweekday=6)
 
     if events:
         # Convert the ISO 8601 date times to a datetime object
@@ -110,11 +110,14 @@ def calendar(request):
         context['month'] = window.strftime(
             "%B")
 
-        context['days'] = list()
-        for day in cal_obj.itermonthdates(window.year, window.month):
-            matches = [x for x in context['events']
-                       if x['start']['dateTime'].day == day.day]
-            context['days'].append({"day": day, "events": matches})
+        context['weeks'] = list()
+        for week in cal_obj.monthdatescalendar(window.year, window.month):
+            weekdays = list()
+            for day in week:
+                matches = [x for x in context['events']
+                           if x['start']['dateTime'].day == day.day]
+                weekdays.append({"day": day, "events": matches})
+            context['weeks'].append(weekdays)
 
     return render(request, 'tutorial/calendar.html', context)
 # </CalendarViewSnippet>

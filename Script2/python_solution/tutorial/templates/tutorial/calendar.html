@@ -5,62 +5,38 @@
 {% extends "tutorial/layout.html" %}
 {% block content %}
 <h1>Calendar{% if month %}: {{ month }} {% endif %}</h1>
-<script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Day</th>
-      <th scope="col">Organizer</th>
-      <th scope="col">Subject</th>
-      <th scope="col">Start</th>
-      <th scope="col">End</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% if days %}
-    {% for day in days %}
-    <tr>
-      <td>{{ day.day }} </td>
-      <td>
-        <table>
-          {% for event in day.events %}
-          <tr>
-            <td>{{ event.organizer.emailAddress.name }}</td>
-          </tr>
-          {% endfor %}
-        </table>
-      </td>
-      <td>
-        <table>
-          {% for event in day.events %}
-          <tr>
-            <td>{{ event.subject }}</td>
-          </tr>
-          {% endfor %}
-        </table>
-      </td>
-      <td>
-        <table>
-          {% for event in day.events %}
-          <tr>
-            <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
-          </tr>
-          {% endfor %}
-        </table>
-      </td>
-      <td>
-        <table>
-          {% for event in day.events %}
-          <tr>
-            <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
-          </tr>
-          {% endfor %}
-        </table>
-      </td>
-    </tr>
+<table id="calendar">
+  <tr class="weekdays">
+    <th scope="col">Sunday</th>
+    <th scope="col">Monday</th>
+    <th scope="col">Tuesday</th>
+    <th scope="col">Wednesday</th>
+    <th scope="col">Thursday</th>
+    <th scope="col">Friday</th>
+    <th scope="col">Saturday</th>
+  </tr>
+  {% if weeks %}
+  {% for week in weeks %}
+  <tr class="days">
+    {% for day in week %}
+    <td class="day">
+      <div class="date">{{ day.day | date:"j" }}</div>
+      {% for event in day.events %}
+      <div class="event">
+        <div class="event-desc">
+          {{ event.subject }}
+        </div>
+        <div class="event-time">
+          {{ event.start.dateTime | time }} to
+          {{ event.end.dateTime | time}}
+        </div>
+      </div>
+      {% endfor %}
+    </td>
     {% endfor %}
-    {% endif %}
-  </tbody>
+  </tr>
+  {% endfor %}
+  {% endif %}
 </table>
 {% endblock %}
 <!-- </CalendarSnippet> -->
