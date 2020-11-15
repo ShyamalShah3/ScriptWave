@@ -33,6 +33,7 @@ caption {
   font-size: 130%;
   font-weight: bold;
   padding: 10px 0;
+  color: white;
 }
 
 #calendar a {
@@ -47,7 +48,7 @@ caption {
 }
 
 #calendar .weekdays {
-	background: #8e352e;  
+	
 }
 
 
