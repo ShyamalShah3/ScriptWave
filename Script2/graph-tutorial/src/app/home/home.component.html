@@ -2,15 +2,21 @@
      Licensed under the MIT License. -->
 <!-- <homeHtml> -->
 <div class="jumbotron">
-  <h1>Welcome!</h1>
-  <p>Please login and authenticate.</p>
   <div *ngIf="authenticated; then welcomeUser else signInPrompt"></div>
-  <ng-template #welcomeUser>
-    <h4>Welcome {{ user.displayName }}!</h4>
-    <p>Use the navigation bar at the top of the page to get started.</p>
-  </ng-template>
-  <ng-template #signInPrompt>
-    <button class="btn btn-primary btn-large" role="button" (click)="signIn()">Click here to sign in</button>
-  </ng-template>
+  <div class="userAuthenticated">
+    <ng-template #welcomeUser>
+      <h4>Welcome {{ user.displayName }}!</h4>
+      <p>Use the navigation bar at the top of the page to get started.</p>
+    </ng-template>
+  </div>
+  <div class="userNotAuthenticated">
+    <ng-template #signInPrompt>
+      <h1>Welcome!</h1>
+      <p>Please login and authenticate.</p>
+      <div class="signInButton">
+        <button class="btn btn-primary btn-large" role="button" (click)="signIn()" style="background-color: black;">Sign In</button>
+      </div>
+    </ng-template>
+  </div>
 </div>
 <!-- </homeHtml> -->

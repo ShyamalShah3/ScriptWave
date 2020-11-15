@@ -24,10 +24,26 @@ html {
 }
 
 .about-section {
-  padding: 50px;
+  padding: 15px;
   text-align: center;
-  background-color: #474e5d;
+  background-color: black;
+  opacity: .49;
   color: white;
+}
+
+hr{
+    overflow: visible;
+    height: 30px;
+    border-style: solid;
+    border-color: white;
+    border-width: 1px 0 0 0;
+    border-radius: 20px;
+}
+
+.ourTeam{
+    position: relative;
+    color:white;
+    top: -25px;
 }
 
 .container {

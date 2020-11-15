@@ -4,28 +4,30 @@
 <!-- <navHtml> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a routerLink="/" class="navbar-brand">ScriptWave</a>
+    <a class="navbar-brand">ScriptWave</a>
     <button class="navbar-toggler" type="button" (click)="toggleNavBar()" [attr.aria-expanded]="showNav"
     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" [class.show]="showNav" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a routerLink="/" class="nav-link" routerLinkActive="active">Home</a>
-        </li>
-        <li *ngIf="authenticated" class="nav-item">
-          <a routerLink="/calendar" class="nav-link" routerLinkActive="active">Calendar</a>
-        </li>
-        <li *ngIf="authenticated" class="nav-item">
-          <a routerLink="/weekly" class="nav-link" routerLinkActive="active">Weekly</a>
-        </li>
-        <li *ngIf="authenticated" class="nav-item">
-          <a routerLink="/to-do" class="nav-link" routerLinkActive="active">Daily To Do</a>
-        </li>
-        <li *ngIf="authenticated" class="nav-item">
-          <a routerLink="/aboutus" class="nav-link" routerLinkActive="active">About Us</a>
-        </li>
+        <div class="list-spacing">
+          <li *ngIf="authenticated" class="nav-item">
+            <a routerLink="/" class="nav-link" routerLinkActive="active">Home</a>
+          </li>
+          <li *ngIf="authenticated" class="nav-item">
+            <a routerLink="/calendar" class="nav-link" routerLinkActive="active">Calendar</a>
+          </li>
+          <li *ngIf="authenticated" class="nav-item">
+            <a routerLink="/weekly" class="nav-link" routerLinkActive="active">Weekly</a>
+          </li>
+          <li *ngIf="authenticated" class="nav-item">
+            <a routerLink="/to-do" class="nav-link" routerLinkActive="active">Daily To Do</a>
+          </li>
+          <li *ngIf="authenticated" class="nav-item">
+            <a routerLink="/aboutus" class="nav-link" routerLinkActive="active">About Us</a>
+          </li>
+        </div>
       </ul>
       <ul class="navbar-nav justify-content-end">
         <!--
@@ -36,7 +38,7 @@
         </li>
         -->
         <li *ngIf="authenticated" ngbDropdown placement="bottom-right" class="nav-item">
-          <a ngbDropdownToggle id="userMenu" class="nav-link" role="button" aria-haspopup="true"
+          <a  routerLink="/" ngbDropdownToggle id="userMenu" class="nav-link" role="button" aria-haspopup="true"
             aria-expanded="false">
             <div *ngIf="user && user.avatar; then userAvatar else defaultAvatar"></div>
             <ng-template #userAvatar>

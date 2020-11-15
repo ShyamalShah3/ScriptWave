@@ -1,0 +1,14 @@
+.jumbotron{
+    background-color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin-right: 35%;
+    margin-left: 35%;
+    top: 35%;
+    border: 5px solid black;
+    text-align: center;
+}
+.btn-primary{
+    border-color: black;
+}

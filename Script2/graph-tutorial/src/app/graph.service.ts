@@ -51,5 +51,19 @@ export class GraphService {
       this.alertsService.add('Could not get events', JSON.stringify(error, null, 2));
     }
   }
+
+  async getWeeklyEvents(): Promise<Event[]> {
+    try {
+      let result = await this.graphClient
+        .api('/me/events')
+        .select('subject,organizer,start,end')
+        .orderby('createdDateTime DESC')
+        .get();
+
+      return result.value;
+    } catch (error) {
+      this.alertsService.add('Could not get events', JSON.stringify(error, null, 2));
+    }
+  }
 }
 // </graphServiceSnippet>
