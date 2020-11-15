@@ -28,8 +28,7 @@ export class GraphService {
             done(reason, null);
           });
 
-        if (token)
-        {
+        if (token) {
           done(null, token);
         } else {
           done("Could not get an access token", null);
@@ -40,10 +39,14 @@ export class GraphService {
 
   async getEvents(): Promise<Event[]> {
     try {
-      let result =  await this.graphClient
+      var date = new Date();
+      var firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
+      var nextFirstDay = new Date(date.getFullYear(), date.getMonth() + 1, 1);
+      let result = await this.graphClient
         .api('/me/events')
         .select('subject,organizer,start,end')
-        .orderby('createdDateTime DESC')
+        .orderby('start/dateTime ASC')
+        .filter(`start/dateTime ge '${firstDay}' and start/dateTime lt '${nextFirstDay}`)
         .get();
 
       return result.value;
@@ -66,7 +69,7 @@ export class GraphService {
     var finalString = finalDate.toLocaleDateString();
     try {
       let result = await this.graphClient
-        .api('/me/calendarview?startdatetime='+todayString+'&enddatetime='+finalString)
+        .api('/me/calendarview?startdatetime=' + todayString + '&enddatetime=' + finalString)
         .select('subject,organizer,start,end')
         //.orderby('createdDateTime DESC')
         .get();
@@ -83,7 +86,7 @@ export class GraphService {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
-    today = new Date(mm + '/' + dd + '/' + yyyy );
+    today = new Date(mm + '/' + dd + '/' + yyyy);
     var todayString = today.toLocaleDateString();
 
     var finalDate = new Date(today.toLocaleDateString());
