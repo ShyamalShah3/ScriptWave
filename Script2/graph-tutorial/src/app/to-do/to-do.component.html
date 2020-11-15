@@ -7,6 +7,7 @@
   <br />
   <table class="table">
     <thead>
+    <th scope="col">Completed</th>
     <th scope="col">Organizer</th>
     <th scope="col">Subject</th>
     <th scope="col">Start</th>
@@ -14,6 +15,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let event of events">
+        <td><input type="checkbox" /></td>
         <td>{{event.organizer.emailAddress.name}}</td>
         <td>{{event.subject}}</td>
         <td>{{formatDateTimeTimeZone(event.start) | date:'short' }}</td>
