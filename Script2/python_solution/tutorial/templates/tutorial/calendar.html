@@ -9,6 +9,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th scope="col">Day</th>
       <th scope="col">Organizer</th>
       <th scope="col">Subject</th>
       <th scope="col">Start</th>
@@ -16,13 +17,46 @@
     </tr>
   </thead>
   <tbody>
-    {% if events %}
-    {% for event in events %}
+    {% if days %}
+    {% for day in days %}
     <tr>
-      <td>{{ event.organizer.emailAddress.name }}</td>
-      <td>{{ event.subject }}</td>
-      <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
-      <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+      <td>{{ day.day }} </td>
+      <td>
+        <table>
+          {% for event in day.events %}
+          <tr>
+            <td>{{ event.organizer.emailAddress.name }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
+      <td>
+        <table>
+          {% for event in day.events %}
+          <tr>
+            <td>{{ event.subject }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
+      <td>
+        <table>
+          {% for event in day.events %}
+          <tr>
+            <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
+      <td>
+        <table>
+          {% for event in day.events %}
+          <tr>
+            <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+          </tr>
+          {% endfor %}
+        </table>
+      </td>
     </tr>
     {% endfor %}
     {% endif %}
