@@ -2,8 +2,8 @@
      Licensed under the MIT License. -->
 <!-- <homeHtml> -->
 <div class="jumbotron">
-  <h1>Angular Graph Tutorial</h1>
-  <p class="lead">This sample app shows how to use the Microsoft Graph API from Angular</p>
+  <h1>Welcome!</h1>
+  <p>Please login and authenticate.</p>
   <div *ngIf="authenticated; then welcomeUser else signInPrompt"></div>
   <ng-template #welcomeUser>
     <h4>Welcome {{ user.displayName }}!</h4>

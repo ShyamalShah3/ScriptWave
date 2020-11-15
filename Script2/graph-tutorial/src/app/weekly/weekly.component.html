@@ -1,21 +1,20 @@
-<!-- Copyright (c) Microsoft Corporation.
-     Licensed under the MIT License. -->
-<!-- <weeklyHtml> -->
-<h1>Weekly</h1>
-<table class="table">
-  <thead>
-  <th scope="col">Organizer</th>
-  <th scope="col">Subject</th>
-  <th scope="col">Start</th>
-  <th scope="col">End</th>
-  </thead>
-  <tbody>
-    <tr *ngFor="let event of events">
-      <td>{{event.organizer.emailAddress.name}}</td>
-      <td>{{event.subject}}</td>
-      <td>{{formatDateTimeTimeZone(event.start) | date:'short' }}</td>
-      <td>{{formatDateTimeTimeZone(event.end) | date: 'short' }}</td>
-    </tr>
-  </tbody>
-</table>
-<!-- </weeklyHtml> -->
+<mgt-agenda #myagenda group-by-day date="November 12, 2020">
+  <template data-type="event">
+    <div class="tracking-tight shadow-md p-4 m-3">
+      <div class="tracking-tight font-semibold cursor-pointer" data-props="[[@click: openWebLink, innerHTML: event.subject]]"></div>
+      <div class="tracking-tight"
+           data-if="getDate(event.start.dateTime) == getDate(event.end.dateTime)"
+           data-props="[[innerHTML: 'from ' + getTime(event.start.dateTime) + ' to ' + getTime(event.end.dateTime)]]"></div>
+      <div class="overflow-y-auto mt-3 p-1 bg-gray-200"
+           data-if="event.body.content != ''"
+           data-props="[[innerHTML: event.body.content]]"
+           style='maxHeight: "150px"'></div>
+    </div>
+  </template>
+  <template data-type="no-data">
+    <div class="tracking-tight text-center shadow-md p-4 mx-3">
+      No events to show
+    </div>
+  </template>
+</mgt-agenda>
+<!-- <mgt-person person-query="me" view="twolines"></mgt-person> -->
