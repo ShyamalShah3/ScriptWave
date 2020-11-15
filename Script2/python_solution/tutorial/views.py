@@ -7,6 +7,7 @@ from django.urls import reverse
 from tutorial.auth_helper import get_sign_in_url, get_token_from_code, store_token, store_user, remove_user_and_token, get_token
 from tutorial.graph_helper import get_user, get_calendar_events
 import dateutil.parser
+import calendar as cal
 
 # <HomeViewSnippet>
 
@@ -92,6 +93,8 @@ def calendar(request):
 
     events = get_calendar_events(token)
 
+    cal_obj = cal.Calendar(firstweekday=6)
+
     if events:
         # Convert the ISO 8601 date times to a datetime object
         # This allows the Django template to format the value nicely
@@ -101,7 +104,20 @@ def calendar(request):
             event['end']['dateTime'] = dateutil.parser.parse(
                 event['end']['dateTime'])
 
+        window = events['value'][0]['start']['dateTime']
+
         context['events'] = events['value']
+        context['month'] = window.strftime(
+            "%B")
+
+        context['weeks'] = list()
+        for week in cal_obj.monthdatescalendar(window.year, window.month):
+            weekdays = list()
+            for day in week:
+                matches = [x for x in context['events']
+                           if x['start']['dateTime'].day == day.day]
+                weekdays.append({"day": day, "events": matches})
+            context['weeks'].append(weekdays)
 
     return render(request, 'tutorial/calendar.html', context)
 # </CalendarViewSnippet>
