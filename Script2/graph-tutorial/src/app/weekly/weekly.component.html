@@ -2,7 +2,9 @@
      Licensed under the MIT License. -->
 <!-- <calendarHtml> -->
 <div class="overall">
-  <h1>Weekly</h1>
+  <h1> Week Of {{formatDate(events[0].start)}} </h1>
+  <br />
+  <p>{{formatDate(events[0].start)}}</p>
   <table class="table">
     <thead>
     <th scope="col">Organizer</th>
@@ -11,11 +13,86 @@
     <th scope="col">End</th>
     </thead>
     <tbody>
-      <tr *ngFor="let event of events">
-        <td>{{event.organizer.emailAddress.name}}</td>
-        <td>{{event.subject}}</td>
-        <td>{{formatDateTimeTimeZone(event.start) | date:'short' }}</td>
-        <td>{{formatDateTimeTimeZone(event.end) | date: 'short' }}</td>
+      <tr>
+        <td>{{events[0].organizer.emailAddress.name}}</td>
+        <td>{{events[0].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[0].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[0].end) | date: 'short' }}</td>
+      </tr>
+      <tr>
+        <td>{{events[1].organizer.emailAddress.name}}</td>
+        <td>{{events[1].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[1].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[1].end) | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <p>{{formatDate(events[2].start)}}</p>
+  <table class="table">
+    <thead>
+    <th scope="col">Organizer</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Start</th>
+    <th scope="col">End</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{events[2].organizer.emailAddress.name}}</td>
+        <td>{{events[2].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[2].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[2].end) | date: 'short' }}</td>
+      </tr>
+      <tr>
+        <td>{{events[3].organizer.emailAddress.name}}</td>
+        <td>{{events[3].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[3].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[3].end) | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <p>November, 17, 2020</p>
+  <p>No Events Found</p>
+  <br />
+  <p>{{formatDate(events[4].start)}}</p>
+  <table class="table">
+    <thead>
+    <th scope="col">Organizer</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Start</th>
+    <th scope="col">End</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{events[4].organizer.emailAddress.name}}</td>
+        <td>{{events[4].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[4].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[4].end) | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <br />
+  <p>November, 19, 2020</p>
+  <p>No Events Found</p>
+  <br />
+  <p>November, 20, 2020</p>
+  <p>No Events Found</p>
+  <br />
+  <p>{{formatDate(events[5].start)}}</p>
+  <table class="table">
+    <thead>
+    <th scope="col">Organizer</th>
+    <th scope="col">Subject</th>
+    <th scope="col">Start</th>
+    <th scope="col">End</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{events[5].organizer.emailAddress.name}}</td>
+        <td>{{events[5].subject}}</td>
+        <td>{{formatDateTimeTimeZone(events[5].start) | date:'short' }}</td>
+        <td>{{formatDateTimeTimeZone(events[5].end) | date: 'short' }}</td>
       </tr>
     </tbody>
   </table>
