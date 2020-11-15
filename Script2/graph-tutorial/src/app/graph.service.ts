@@ -53,9 +53,45 @@ export class GraphService {
   }
 
   async getWeeklyEvents(): Promise<Event[]> {
+    var today = new Date();
+    var dd = String(today.getDate() + 1).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = new Date(mm + '/' + dd + '/' + yyyy);
+    var todayString = today.toLocaleDateString();
+
+    var finalDate = new Date();
+    finalDate.setDate(today.getDate() + 7);
+    var finalString = finalDate.toLocaleDateString();
     try {
       let result = await this.graphClient
-        .api('/me/events')
+        .api('/me/calendarview?startdatetime='+todayString+'&enddatetime='+finalString)
+        .select('subject,organizer,start,end')
+        //.orderby('createdDateTime DESC')
+        .get();
+
+      return result.value;
+    } catch (error) {
+      this.alertsService.add('Could not get events', JSON.stringify(error, null, 2));
+    }
+  }
+
+  async getDailyEvents(): Promise<Event[]> {
+    var today = new Date();
+    var dd = String(today.getDate() + 1).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    today = new Date(mm + '/' + dd + '/' + yyyy );
+    var todayString = today.toLocaleDateString();
+
+    var finalDate = new Date(today.toLocaleDateString());
+    finalDate.setDate(today.getDate());
+    var finalString = finalDate.toLocaleDateString();
+    try {
+      let result = await this.graphClient
+        .api('/me/calendarview?startdatetime=' + todayString + '&enddatetime=' + finalString)
         .select('subject,organizer,start,end')
         .orderby('createdDateTime DESC')
         .get();
@@ -66,4 +102,6 @@ export class GraphService {
     }
   }
 }
-// </graphServiceSnippet>
+
+
+// + '/' + '0' + '/' + '0' + '/' + '0' + '/' + '0'

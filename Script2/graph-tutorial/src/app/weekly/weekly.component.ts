@@ -41,5 +41,18 @@ export class WeeklyComponent implements OnInit {
     }
   }
   // </formatDateTimeTimeZoneSnippet>
+
+  makeDateArray(dateTime: DateTimeTimeZone): any{
+    try {
+      var year = dateTime.dateTime.substr(0, 4);
+      var month = dateTime.dateTime.substr(5, 2);
+      var date = dateTime.dateTime.substr(8, 2);
+
+
+    }
+    catch (error) {
+      this.alertsService.add('DateTimeTimeZone conversion error', JSON.stringify(error));
+    }
+  }
 }
 
