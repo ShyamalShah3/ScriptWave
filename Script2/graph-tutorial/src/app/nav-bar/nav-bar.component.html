@@ -4,7 +4,7 @@
 <!-- <navHtml> -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
-    <a routerLink="/" class="navbar-brand">Script</a>
+    <a routerLink="/" class="navbar-brand">ScriptWave</a>
     <button class="navbar-toggler" type="button" (click)="toggleNavBar()" [attr.aria-expanded]="showNav"
     aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -28,11 +28,13 @@
         </li>
       </ul>
       <ul class="navbar-nav justify-content-end">
+        <!--
         <li class="nav-item">
           <a class="nav-link" href="https://docs.microsoft.com/graph/overview" target="_blank">
             <fa-icon icon="external-link-alt" class="mr-1"></fa-icon>Docs
           </a>
         </li>
+        -->
         <li *ngIf="authenticated" ngbDropdown placement="bottom-right" class="nav-item">
           <a ngbDropdownToggle id="userMenu" class="nav-link" role="button" aria-haspopup="true"
             aria-expanded="false">
