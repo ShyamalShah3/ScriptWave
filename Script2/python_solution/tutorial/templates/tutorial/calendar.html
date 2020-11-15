@@ -4,7 +4,7 @@
 <!-- <CalendarSnippet> -->
 {% extends "tutorial/layout.html" %}
 {% block content %}
-<h1>Calendar</h1>
+<h1>Calendar{% if month %}: {{ month }} {% endif %}</h1>
 <script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
 <table class="table">
   <thead>

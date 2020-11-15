@@ -102,6 +102,8 @@ def calendar(request):
                 event['end']['dateTime'])
 
         context['events'] = events['value']
+        context['month'] = events['value'][0]['start']['dateTime'].strftime(
+            "%B")
 
     return render(request, 'tutorial/calendar.html', context)
 # </CalendarViewSnippet>
