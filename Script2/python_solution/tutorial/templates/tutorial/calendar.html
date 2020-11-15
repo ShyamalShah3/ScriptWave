@@ -5,6 +5,7 @@
 {% extends "tutorial/layout.html" %}
 {% block content %}
 <h1>Calendar</h1>
+<script src="https://unpkg.com/@microsoft/mgt/dist/bundle/mgt-loader.js"></script>
 <table class="table">
   <thead>
     <tr>
@@ -16,14 +17,14 @@
   </thead>
   <tbody>
     {% if events %}
-      {% for event in events %}
-        <tr>
-          <td>{{ event.organizer.emailAddress.name }}</td>
-          <td>{{ event.subject }}</td>
-          <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
-          <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
-        </tr>
-      {% endfor %}
+    {% for event in events %}
+    <tr>
+      <td>{{ event.organizer.emailAddress.name }}</td>
+      <td>{{ event.subject }}</td>
+      <td>{{ event.start.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+      <td>{{ event.end.dateTime|date:'SHORT_DATETIME_FORMAT' }}</td>
+    </tr>
+    {% endfor %}
     {% endif %}
   </tbody>
 </table>
